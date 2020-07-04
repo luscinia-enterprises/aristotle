@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /teachers/
+Disallow: /students/
+Disallow: /parents/
+Disallow: /administrators/
+Disallow: /db/
