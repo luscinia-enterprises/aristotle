@@ -1,0 +1,52 @@
+<!--
+  ~ Aristotle Learning Platform: Luscinia Enterprises Assn.
+  ~ Copyright (C) 2020
+  ~     Luscinia Enterprises Assn. <development@luscinia.ca>
+  ~     Varun Patel <vpatel@luscinia.ca>, <varun@varunpatel.ca>
+  ~     Milan Bumbulovic <mbumbulovic@luscinia.ca>
+  ~     Jacob Chun <jchun@luscinia.ca>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="parts/head.html :: head">
+</head>
+<body class="bg-dark" style="min-width: 450px">
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-header text-center">
+            <th:block th:replace="authentication/parts/nav.html :: nav">0</th:block>
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">Create An Admin Account</h3>
+            <form th:action="@{/register/student}" th:object="${user}" method="post">
+                <label for="inputFirstName" class="sr-only">First Name</label>
+                <input th:field="*{firstName}" type="text" id="inputFirstName" class="form-control" placeholder="First Name" required autofocus>
+                <label for="inputLastName" class="sr-only">First Name</label>
+                <input th:field="*{lastName}" type="text" id="inputLastName" class="form-control" placeholder="Last Name" required>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input th:field="*{email}" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input th:field="*{password}" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="parts/footer.html :: footer">0</th:block>
+</body>
+<th:block th:replace="parts/scripts.html :: scripts">0</th:block>
+</html>

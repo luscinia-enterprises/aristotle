@@ -1,0 +1,52 @@
+<!--
+  ~ Aristotle Learning Platform: Luscinia Enterprises Assn.
+  ~ Copyright (C) 2020 
+  ~     Luscinia Enterprises Assn. <development@luscinia.ca>
+  ~     Varun Patel <vpatel@luscinia.ca>, <varun@varunpatel.ca>
+  ~     Milan Bumbulovic <mbumbulovic@luscinia.ca>
+  ~     Jacob Chun <jchun@luscinia.ca>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert='parts/head.html :: head'></head>
+<body class="bg-dark" style="min-width: 450px">
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-header text-center">
+            <th:block th:replace="authentication/parts/nav.html :: nav">0</th:block>
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">Log In</h3>
+            <form th:action="@{/login}" method="post">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="parts/footer.html :: footer">0</th:block>
+</body>
+<th:block th:replace="parts/scripts.html :: scripts">0</th:block>
+</html>

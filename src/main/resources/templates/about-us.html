@@ -1,0 +1,65 @@
+<!--
+  ~ Aristotle Learning Platform: Luscinia Enterprises Assn.
+  ~ Copyright (C) 2020
+  ~     Luscinia Enterprises Assn. <development@luscinia.ca>
+  ~     Varun Patel <vpatel@luscinia.ca>, <varun@varunpatel.ca>
+  ~     Milan Bumbulovic <mbumbulovic@luscinia.ca>
+  ~     Jacob Chun <jchun@luscinia.ca>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="parts/head.html :: head"></head>
+<body class="bg-dark">
+<th:block th:replace="parts/nav.html :: navbar">0</th:block>
+<th:block th:replace="parts/misc.html :: loginmodal">0</th:block>
+<div class="container bg-dark">
+    <div class="card">
+        <div class="card-header text-center">
+            <h3 class="card-title">Our Story</h3>
+        </div>
+        <div class="card-body">
+            <p class="card-text p-3 justify-content-between">
+                The development of Aristotle began with a group discussion between frustrated high school students. All
+                of us had our issues with the educational system, and we were discussing how we could improve it. Many
+                exciting ideas were brought up from many differing perspectives. We realized that unlike most aspects of
+                modern life, the educational system has fundamentally remained unchanged for the last 150 years. That
+                discussion lingered with us all for weeks, and we would occasionally bring it up. After extensive
+                deliberation, we realized that as students, we possess a unique perspective on the woes of the current
+                education system, and we had come to some substantive ideas on how we could improve it. In August of
+                2018, Luscinia Enterprises Assn. was incorporated, determined to provide high-quality educational
+                services to anybody that has the drive to learn. We decided to start by catering our services to the
+                education curriculum of our home province of British Columbia. Our dream was to use the promise of
+                technology to improve the educational experience of students, parents, and teachers alike. At first we
+                made slow progress, the 2018-2019 school year was our senior year; extracurriculars, university
+                applications, and much more put the development of Aristotle aside. But slowly and steadily we made
+                progress because of our passion for the project. We are almost ready to make aristotle available for
+                everyone.
+            </p>
+            <br/>
+            <h5 class="card-title text-center">Release Timeline</h5>
+            <div class="text-center">
+                <img src="about-us/timeline.png" class="img-fluid w-75"
+                     alt="Luscinia Development Plan for the Aristotle Education Platform"/>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+<th:block th:replace="parts/footer.html :: footer">0</th:block>
+</body>
+<th:block th:replace="parts/scripts.html :: scripts">0</th:block>
+</html>

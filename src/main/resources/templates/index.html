@@ -1,21 +1,83 @@
+<!--
+  ~ Aristotle Learning Platform: Luscinia Enterprises Assn.
+  ~ Copyright (C) 2020
+  ~     Luscinia Enterprises Assn. <development@luscinia.ca>
+  ~     Varun Patel <vpatel@luscinia.ca>, <varun@varunpatel.ca>
+  ~     Milan Bumbulovic <mbumbulovic@luscinia.ca>
+  ~     Jacob Chun <jchun@luscinia.ca>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="parts :: head">
-    <meta charset="UTF-8">
-    <title>Aristotle Education Platform</title>
-</head>
-<body class="container-fluid" style="background-image: linear-gradient(90deg, #2d5e97, #60c2db)">
-<th:block th:replace="parts :: navbar"></th:block>
-<div class="container">
+<head th:replace='parts/head.html :: head'></head>
+<body class="bg-dark" style="min-width: 450px">
+<th:block th:replace='parts/nav.html :: navbar'>0</th:block>
+<th:block th:replace='parts/misc.html :: loginmodal'>0</th:block>
+<div class="container bg-dark">
+    <br/>
     <div class="card">
-        <div class="card-header">
-            Aristotle Education Platform Development
+        <div class="card-header text-center">
+            <h1 class="card-title">Aristotle Education Platform</h1>
+            <p class="card-subtitle">Welcome to the development site for the Aristotle Education Platform</p>
         </div>
         <div class="card-body">
-            Bootstrap 5.0 Alpha: <span th:text="${@environment.getProperty('aristotle.bootstrapBeta')}">error</span>
+            <p class="card-text">This application is currently being developed by <a href="https://luscinia.ca">Luscinia
+                Enterprises Assn.</a>
+                for educational use.</p>
+            <p>Contributors:</p>
+            <th:block th:replace='parts/misc.html :: contributorslist'>0</th:block>
+            <a class="btn btn-primary btn-lg" href="https://github.com/luscinia-enterprises/aristotle" role="button">Code
+                on GitHub</a>
         </div>
     </div>
+    <br />
+    <div class="card">
+        <div class="card-header text-center">
+            <h3>Request Information</h3>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title" th:text='${#request.getRequestURL()}'>Failed to get requested domain</h6>
+            <table class="table table-hover table-sm">
+                <tr class="bg-primary">
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>User Agent:</td>
+                    <td th:text='${#request.getHeader("User-Agent")}'>Error retrieving user agent.</td>
+                </tr>
+                <tr>
+                    <td>Session ID:</td>
+                    <td th:text='${#request.getSession().id}'>Error retrieving session id.</td>
+                </tr>
+                <tr>
+                    <td>Timestamp:</td>
+                    <td th:text='${#dates.formatISO(#dates.createNow())}'>Error retrieving date.</td>
+                </tr>
+                <tr>
+                    <td>Bootstrap:</td>
+                    <td th:if='${@environment.getProperty("aristotle.bootstrapBeta")}'>5.0.0-alpha1</td>
+                    <td th:unless='${@environment.getProperty("aristotle.bootstrapBeta")}'>4.5.0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br/>
 </div>
-<th:block th:replace="parts :: scripts"></th:block>
+<th:block th:replace='parts/footer.html :: footer'>0</th:block>
 </body>
+<th:block th:replace='parts/scripts.html :: scripts'>0</th:block>
 </html>
