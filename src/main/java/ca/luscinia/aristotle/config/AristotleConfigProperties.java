@@ -35,6 +35,8 @@ public class AristotleConfigProperties {
     private String description;
     private String owner;
     private boolean bootstrapBeta;
+    private String tokenkey;
+    private String privilegedip;
 
     public String getTitle() {
         return title;
@@ -84,4 +86,23 @@ public class AristotleConfigProperties {
         this.bootstrapBeta = bootstrapBeta;
     }
 
+    public boolean isBootstrapBeta() {
+        return bootstrapBeta;
+    }
+
+    public String getTokenkey() {
+        return tokenkey;
+    }
+
+    public void setTokenkey(String tokenkey) {
+        this.tokenkey = tokenkey;
+    }
+
+    public String getPrivilegedip() {
+        return privilegedip;
+    }
+
+    public void setPrivilegedip(String privilegedip) {
+        this.privilegedip = privilegedip;
+    }
 }
