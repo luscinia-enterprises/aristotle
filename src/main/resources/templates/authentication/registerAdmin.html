@@ -22,31 +22,25 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="parts/head.html :: head">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Registration Page</title>
 </head>
-<body class="bg-dark" style="min-width: 450px">
-<div class="container">
-    <div class="card mt-4">
-        <div class="card-header text-center">
-            <th:block th:replace="authentication/parts/nav.html :: nav">0</th:block>
-        </div>
-        <div class="card-body">
-            <h3 class="card-title">Create An Admin Account</h3>
-            <form th:action="@{/register/student}" th:object="${user}" method="post">
-                <label for="inputFirstName" class="sr-only">First Name</label>
-                <input th:field="*{firstName}" type="text" id="inputFirstName" class="form-control" placeholder="First Name" required autofocus>
-                <label for="inputLastName" class="sr-only">First Name</label>
-                <input th:field="*{lastName}" type="text" id="inputLastName" class="form-control" placeholder="Last Name" required>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input th:field="*{email}" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input th:field="*{password}" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
-            </form>
-        </div>
-    </div>
-</div>
-<th:block th:replace="parts/footer.html :: footer">0</th:block>
+<body>
+
+<h1>Aristotle Education Platform Admin Account Creation</h1>
+<!--/*@thymesVar id="user" type="ca.luscinia.aristotle.database.User"*/-->
+<form th:action="@{/register/admin}" th:method="'post'" th:object="${user}">
+    <label for="email">Email: </label>
+    <input id="email" type="email" th:field="*{email}" />
+    <br />
+    <label for="password">Password: </label>
+    <input id="password" type="password" th:field="*{password}" />
+    <label for="confirmPassword">Confirm Password: </label>
+    <input id="confirmPassword" type="password" name="conf-new-password"/>
+    <br />
+    <input type="submit">
+</form>
+
 </body>
-<th:block th:replace="parts/scripts.html :: scripts">0</th:block>
 </html>

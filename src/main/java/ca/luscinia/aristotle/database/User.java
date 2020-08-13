@@ -24,7 +24,6 @@ package ca.luscinia.aristotle.database;
 
 import ca.luscinia.aristotle.database.general.LearningStyle;
 import ca.luscinia.aristotle.database.user.LoginRecord;
-import ca.luscinia.aristotle.database.user.Role;
 import ca.luscinia.aristotle.database.user.SecurityQuestion;
 import ca.luscinia.aristotle.database.user.Status;
 import org.bson.types.ObjectId;
@@ -35,7 +34,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
 
 @Document("users")
 public class User {
@@ -47,10 +45,12 @@ public class User {
     private String middleNames;
     private String lastName;
 
-    private ArrayList<ObjectId> courses;
-    private ArrayList<ObjectId> teachers;
-    private ArrayList<ObjectId> parents;
-    private ArrayList<ObjectId> students;
+    private String school;
+
+    private ArrayList<String> courses;
+    private ArrayList<String> teachers;
+    private ArrayList<String> parents;
+    private ArrayList<String> students;
 
     private Date accountCreated;
 
@@ -64,7 +64,7 @@ public class User {
     @Indexed(unique = true, direction = IndexDirection.DESCENDING)
     private String phone;
     private String password;
-    private Set<Role> roles;
+    private ArrayList<String> roles;
 
     private boolean enabled;
     private Status status;
@@ -74,6 +74,9 @@ public class User {
     private Date passwordChange;
     private ArrayList<SecurityQuestion> securityQuestions;
     private ArrayList<LoginRecord> loginRecords;
+    private boolean use2FA;
+    private String method2FA;
+    private String secret2FA;
 
     private LearningStyle learningStyle;
 
@@ -117,35 +120,43 @@ public class User {
         this.lastName = lastName;
     }
 
-    public ArrayList<ObjectId> getCourses() {
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public ArrayList<String> getCourses() {
         return courses;
     }
 
-    public void setCourses(ArrayList<ObjectId> courses) {
+    public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }
 
-    public ArrayList<ObjectId> getTeachers() {
+    public ArrayList<String> getTeachers() {
         return teachers;
     }
 
-    public void setTeachers(ArrayList<ObjectId> teachers) {
+    public void setTeachers(ArrayList<String> teachers) {
         this.teachers = teachers;
     }
 
-    public ArrayList<ObjectId> getParents() {
+    public ArrayList<String> getParents() {
         return parents;
     }
 
-    public void setParents(ArrayList<ObjectId> parents) {
+    public void setParents(ArrayList<String> parents) {
         this.parents = parents;
     }
 
-    public ArrayList<ObjectId> getStudents() {
+    public ArrayList<String> getStudents() {
         return students;
     }
 
-    public void setStudents(ArrayList<ObjectId> students) {
+    public void setStudents(ArrayList<String> students) {
         this.students = students;
     }
 
@@ -197,11 +208,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
+    public ArrayList<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(ArrayList<String> roles) {
         this.roles = roles;
     }
 
@@ -253,11 +264,68 @@ public class User {
         this.loginRecords = loginRecords;
     }
 
+    public boolean isUse2FA() {
+        return use2FA;
+    }
+
+    public void setUse2FA(boolean use2FA) {
+        this.use2FA = use2FA;
+    }
+
+    public String getMethod2FA() {
+        return method2FA;
+    }
+
+    public void setMethod2FA(String method2FA) {
+        this.method2FA = method2FA;
+    }
+
+    public String getSecret2FA() {
+        return secret2FA;
+    }
+
+    public void setSecret2FA(String secret2FA) {
+        this.secret2FA = secret2FA;
+    }
+
     public LearningStyle getLearningStyle() {
         return learningStyle;
     }
 
     public void setLearningStyle(LearningStyle learningStyle) {
         this.learningStyle = learningStyle;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", preferredName='" + preferredName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleNames='" + middleNames + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", school='" + school + '\'' +
+                ", courses=" + courses +
+                ", teachers=" + teachers +
+                ", parents=" + parents +
+                ", students=" + students +
+                ", accountCreated=" + accountCreated +
+                ", dateOfBirth=" + dateOfBirth +
+                ", classicGradeLevel=" + classicGradeLevel +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", enabled=" + enabled +
+                ", status=" + status +
+                ", passwordResetKey='" + passwordResetKey + '\'' +
+                ", passwordChange=" + passwordChange +
+                ", securityQuestions=" + securityQuestions +
+                ", loginRecords=" + loginRecords +
+                ", use2FA=" + use2FA +
+                ", method2FA='" + method2FA + '\'' +
+                ", secret2FA='" + secret2FA + '\'' +
+                ", learningStyle=" + learningStyle +
+                '}';
     }
 }

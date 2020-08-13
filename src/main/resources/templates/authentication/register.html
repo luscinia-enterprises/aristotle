@@ -1,0 +1,217 @@
+<!--
+  ~ Aristotle Learning Platform: Luscinia Enterprises Assn.
+  ~ Copyright (C) 2020 
+  ~     Luscinia Enterprises Assn. <development@luscinia.ca>
+  ~     Varun Patel <vpatel@luscinia.ca>, <varun@varunpatel.ca>
+  ~     Milan Bumbulovic <mbumbulovic@luscinia.ca>
+  ~     Jacob Chun <jchun@luscinia.ca>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert='parts/head.html :: head'></head>
+<body class="bg-dark" style="min-width: 450px">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card mt-4 px-sm-5 py-3 col-sm-8">
+            <nav>
+                <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
+                    <a class="nav-link active" id="nav-student-tab" data-toggle="tab" href="#nav-student" role="tab"
+                       aria-controls="nav-student" aria-selected="true">Students</a>
+                    <a class="nav-link" id="nav-parent-tab" data-toggle="tab" href="#nav-parent" role="tab"
+                       aria-controls="nav-parent" aria-selected="false">Parents</a>
+                    <a class="nav-link" id="nav-teacher-tab" data-toggle="tab" href="#nav-teacher" role="tab"
+                       aria-controls="nav-teacher" aria-selected="false">Teachers</a>
+                    <a class="nav-link" id="nav-login-tab" href="/login"
+                       aria-controls="nav-teacher" aria-selected="false">Login</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div id="nav-student" class="tab-pane fade show active" role="tabpanel"
+                     aria-labelledby="nav-student-tab">
+                    <br>
+                    <h3>Student Registration</h3>
+                    <form th:object="${user}" method="post" action="/register/student">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="input-group mt-3 mb-2">
+                                    <input th:field="*{email}" id="new-email" placeholder="Email"
+                                           type="text" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <div class="input-group mb-4">
+                                    <input th:field="*{firstName}" id="new-student-first-name"
+                                           placeholder="First Name" type="text" required
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group mb-4">
+                                    <input th:field="*{lastName}" id="new-student-last-name"
+                                           placeholder="Last Name" type="text" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <div class="input-group mb-4">
+                                    <input th:field="*{password}" id="new-student-password" name="new-password"
+                                           placeholder="Password" type="password" required="required"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <input id="confirm-new-student-password" name="conf-new-password"
+                                       placeholder="Confirm Password" type="password" required
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-7">
+                                <div class="input-group mb-2">
+                                    <input th:field="*{school}" id="new-school" name="school-name"
+                                           placeholder="School Name"
+                                           type="text" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">Grade</span>
+                                    <select th:field="*{classicGradeLevel}" id="grade" name="grade-select"
+                                            class="form-select" required aria-label="Grade Selection">
+                                        <option value="0" disabled>Select...</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9" selected>9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-7">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">Preferred Learning Method</span>
+                                    <select id="learning-style" name="learning-style-select" class="form-select"
+                                            aria-label="learning style">
+                                        <option value="" disabled selected>Select One...</option>
+                                        <option value="visual">Pictures</option>
+                                        <option value="auditory">Sounds</option>
+                                        <option value="verbal">Text</option>
+                                        <option value="logical">Logic</option>
+                                        <option value="kinesthetic">Models</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <input id="course-code" name="course-code" placeholder="Course Code" type="text"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <div align="left">
+                                <button name="register" type="submit" class="btn btn-secondary">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="nav-parent" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-parent-tab">
+                    <br>
+                    <h3>Parent Registration</h3>
+                    <form th:object="${user}" method="post" action="/register/parent">
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <div class="input-group mt-3 mb-2">
+                                    <input th:field="*{firstName}" id="new-parent-first-name" name="first-name"
+                                           placeholder="First Name" type="text" required="required"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group mt-3 mb-2">
+                                    <input th:field="*{lastName}" id="new-parent-last-name" name="last-name"
+                                           placeholder="Last Name" type="text" required="required" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="input-group mb-2">
+                                    <input th:field="*{email}" id="new-parent-email" name="email" placeholder="Email"
+                                           type="text" required="required" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="input-group mb-2">
+                                    <input th:field="*{password}" id="new-parent-password" name="new-password"
+                                           placeholder="Password" type="password" required="required"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="input-group mb-4">
+                                    <input id="confirm-new-parent-password" name="conf-new-password"
+                                           placeholder="Confirm Password" type="password" required="required"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <span class="input-group-text">Student Code</span>
+                                    <input id="student-code" name="student-code" placeholder="..." type="text"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <div align="left">
+                                <button name="register" type="submit" class="btn btn-secondary">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="nav-teacher" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-teacher-tab">
+                    <br>
+                    <h3>Teacher Registration</h3>
+                    <p>Teachers wishing to participate in the Aristotle Alpha can contact us at <a
+                            href="mailto:executive@luscinia.ca">support@luscinia.ca</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="parts/footer.html :: footer">0</th:block>
+</body>
+<th:block th:replace="parts/scripts.html :: scripts">0</th:block>
+</html>

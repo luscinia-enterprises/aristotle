@@ -25,7 +25,7 @@
 <head>
 </head>
 <body>
-<th:block th:fragment='navbar'>
+<th:block th:fragment="navbar-public">
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand ml-2" href="/">
@@ -73,6 +73,22 @@
         </div>
     </nav>
 </div>
+</th:block>
+<th:block th:fragment="navbar-auth">
+    <ul class="nav nav-pills card-header-pills justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="/login">Log In</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/register/student">Register Student</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/register/teacher">Register Teacher</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/register/parent">Register Parent</a>
+        </li>
+    </ul>
 </th:block>
 </body>
 </html>

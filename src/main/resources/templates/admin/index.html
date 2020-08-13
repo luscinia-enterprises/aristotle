@@ -22,25 +22,25 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="parts/head.html :: head">
-    <title>Error rendering page server side</title>
-</head>
-<body class="bg-dark">
-<th:block th:replace="parts/nav.html :: navbar-public">0</th:block>
-<th:block th:replace="parts/misc.html :: loginmodal">0</th:block>
-<div class="container bg-dark">
-    <br/>
-    <!--/*@thymesVar id="request" type="java.lang.String"*/-->
-    <th:block th:switch="${request}">
-        <th:block th:case="parents" th:insert="info/parents.html :: parents">0</th:block>
-        <th:block th:case="schools" th:insert="info/schools.html :: schools">0</th:block>
-        <th:block th:case="sponsors" th:insert="info/sponsors.html :: sponsors">0</th:block>
-        <th:block th:case="students" th:insert="info/students.html :: students">0</th:block>
-        <th:block th:case="teachers" th:insert="info/teachers.html :: teachers">0</th:block>
-    </th:block>
-    <br/>
+<head th:insert='parts/head.html :: head'></head>
+<body class="bg-dark" style="min-width: 450px">
+
+<div class="container" align="center" style="align-content:center;margin-top:30vh">
+    <h4 class="text-white">Aristotle Admin Panel</h4>
+    <br>
+    <div class="card" style="width: 20rem;">
+        <div class="btn-group-vertical">
+            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary">Aristotle Webpage</a>
+            <a href="/admin/dataEntryTool" class="btn btn-outline-secondary">Classic Data Entry Tool</a>
+            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary disabled">Assessment Resource Tool</a>
+            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary disabled">Non-Assessment Resource Tool</a>
+            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary disabled">Account Management System</a>
+            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary disabled">Application Management System</a>
+        </div>
+    </div>
 </div>
 <th:block th:replace="parts/footer.html :: footer">0</th:block>
+
 </body>
 <th:block th:replace="parts/scripts.html :: scripts">0</th:block>
 </html>

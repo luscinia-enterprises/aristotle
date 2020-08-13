@@ -34,9 +34,11 @@ public class AristotleConfigProperties {
     private String version;
     private String description;
     private String owner;
-    private boolean bootstrapBeta;
-    private String tokenkey;
-    private String privilegedip;
+    private String tokenKey;
+    private String privilegedIp;
+    private boolean useTwilio;
+    private String twilioSid;
+    private String twilioToken;
 
     public String getTitle() {
         return title;
@@ -78,31 +80,43 @@ public class AristotleConfigProperties {
         this.owner = owner;
     }
 
-    public boolean getBootstrapBeta() {
-        return bootstrapBeta;
+    public String getTokenKey() {
+        return tokenKey;
     }
 
-    public void setBootstrapBeta(boolean bootstrapBeta) {
-        this.bootstrapBeta = bootstrapBeta;
+    public void setTokenKey(String tokenKey) {
+        this.tokenKey = tokenKey;
     }
 
-    public boolean isBootstrapBeta() {
-        return bootstrapBeta;
+    public String getPrivilegedIp() {
+        return privilegedIp;
     }
 
-    public String getTokenkey() {
-        return tokenkey;
+    public void setPrivilegedIp(String privilegedIp) {
+        this.privilegedIp = privilegedIp;
     }
 
-    public void setTokenkey(String tokenkey) {
-        this.tokenkey = tokenkey;
+    public boolean isUseTwilio() {
+        return useTwilio;
     }
 
-    public String getPrivilegedip() {
-        return privilegedip;
+    public void setUseTwilio(boolean useTwilio) {
+        this.useTwilio = useTwilio;
     }
 
-    public void setPrivilegedip(String privilegedip) {
-        this.privilegedip = privilegedip;
+    public String getTwilioSid() {
+        return twilioSid;
+    }
+
+    public void setTwilioSid(String twilioSid) {
+        this.twilioSid = twilioSid;
+    }
+
+    public String getTwilioToken() {
+        return twilioToken;
+    }
+
+    public void setTwilioToken(String twilioToken) {
+        this.twilioToken = twilioToken;
     }
 }

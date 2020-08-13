@@ -22,25 +22,11 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="parts/head.html :: head">
-    <title>Error rendering page server side</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Aristotle</title>
 </head>
-<body class="bg-dark">
-<th:block th:replace="parts/nav.html :: navbar-public">0</th:block>
-<th:block th:replace="parts/misc.html :: loginmodal">0</th:block>
-<div class="container bg-dark">
-    <br/>
-    <!--/*@thymesVar id="request" type="java.lang.String"*/-->
-    <th:block th:switch="${request}">
-        <th:block th:case="parents" th:insert="info/parents.html :: parents">0</th:block>
-        <th:block th:case="schools" th:insert="info/schools.html :: schools">0</th:block>
-        <th:block th:case="sponsors" th:insert="info/sponsors.html :: sponsors">0</th:block>
-        <th:block th:case="students" th:insert="info/students.html :: students">0</th:block>
-        <th:block th:case="teachers" th:insert="info/teachers.html :: teachers">0</th:block>
-    </th:block>
-    <br/>
-</div>
-<th:block th:replace="parts/footer.html :: footer">0</th:block>
+<body>
+Authenticated Parent
 </body>
-<th:block th:replace="parts/scripts.html :: scripts">0</th:block>
 </html>

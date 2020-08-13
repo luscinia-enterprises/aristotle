@@ -20,25 +20,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ca.luscinia.aristotle;
+package ca.luscinia.aristotle.config;
 
-import ca.luscinia.aristotle.config.AristotleConfigProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
-@EnableConfigurationProperties(AristotleConfigProperties.class)
-@EnableWebSecurity
-public class AristotleEducationPlatformApplication {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-    private static AristotleConfigProperties aristotleConfigProperties;
-
-    public static void main(String[] args) {
-        SpringApplication.run(AristotleEducationPlatformApplication.class, args);
+@Component
+public class CustomizeLogoutHandler implements LogoutHandler {
+    @Override
+    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        response.setStatus(HttpServletResponse.SC_OK);
+        try {
+            response.sendRedirect("/logout/success");
+        } catch (IOException ignored) {}
     }
-
 }
