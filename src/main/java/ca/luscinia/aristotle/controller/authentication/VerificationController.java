@@ -20,25 +20,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ca.luscinia.aristotle;
+package ca.luscinia.aristotle.controller.authentication;
 
-import ca.luscinia.aristotle.config.AristotleConfigProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.stereotype.Controller;
 
-@SpringBootApplication
-@EnableConfigurationProperties(AristotleConfigProperties.class)
-@EnableWebSecurity
-public class AristotleEducationPlatformApplication {
-
-    private static AristotleConfigProperties aristotleConfigProperties;
-
-    public static void main(String[] args) {
-        SpringApplication.run(AristotleEducationPlatformApplication.class, args);
-    }
-
+@Controller
+public class VerificationController {
 }

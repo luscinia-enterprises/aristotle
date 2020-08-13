@@ -26,6 +26,8 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+
 @Document("admin")
 public class Admin {
     @Id
@@ -33,7 +35,9 @@ public class Admin {
 
     private String key;
 
-    private String value;
+    private Object value;
+
+    private ArrayList<Object> values;
 
     public ObjectId getId() {
         return id;
@@ -51,11 +55,19 @@ public class Admin {
         this.key = key;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Object value) {
         this.value = value;
+    }
+
+    public ArrayList<Object> getValues() {
+        return values;
+    }
+
+    public void setValues(ArrayList<Object> values) {
+        this.values = values;
     }
 }
