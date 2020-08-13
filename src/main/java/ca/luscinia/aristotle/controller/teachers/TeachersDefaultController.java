@@ -1,6 +1,6 @@
 /*
  * Aristotle Learning Platform: Luscinia Enterprises Assn.
- * Copyright (C) 2020
+ * Copyright (C) 2020 
  *     Luscinia Enterprises Assn. <development@luscinia.ca>
  *     Varun Patel <vpatel@luscinia.ca>, <varun@varunpatel.ca>
  *     Milan Bumbulovic <mbumbulovic@luscinia.ca>
@@ -20,25 +20,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ca.luscinia.aristotle;
+package ca.luscinia.aristotle.controller.teachers;
 
-import ca.luscinia.aristotle.config.AristotleConfigProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-@SpringBootApplication
-@EnableConfigurationProperties(AristotleConfigProperties.class)
-@EnableWebSecurity
-public class AristotleEducationPlatformApplication {
-
-    private static AristotleConfigProperties aristotleConfigProperties;
-
-    public static void main(String[] args) {
-        SpringApplication.run(AristotleEducationPlatformApplication.class, args);
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@Controller
+@RequestMapping("/teachers")
+public class TeachersDefaultController {
+    @RequestMapping()
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("teachers/index");
     }
-
 }

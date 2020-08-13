@@ -20,7 +20,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ca.luscinia.aristotle.controller;
+package ca.luscinia.aristotle.repository;
 
-public class AuthenticatedController {
+import ca.luscinia.aristotle.database.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface UserRepository extends MongoRepository<User, String> {
+    User findByEmail(String email);
 }

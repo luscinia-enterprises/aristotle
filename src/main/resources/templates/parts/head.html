@@ -29,12 +29,7 @@
           name="description">
     <meta content="#007bff" name="theme-color">
     <title>Aristotle Education Platform</title>
-    <th:block th:if="${@environment.getProperty('aristotle.bootstrapBeta')}">
-        <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0-alpha1/dist/css/bootstrap.min.css}"/>
-    </th:block>
-    <th:block th:unless="${@environment.getProperty('aristotle.bootstrapBeta')}">
-        <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/dist/css/bootstrap.min.css}"/>
-    </th:block>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0-alpha1/dist/css/bootstrap.min.css}"/>
     <style>
         html {
             position: relative;
@@ -54,6 +49,21 @@
             background-color: #f5f5f5;
         }
     </style>
+    <!-- Matomo -->
+    <script type="text/javascript">
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//lusciniamatomo.azurewebsites.net/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
 </head>
 <body>
 <div class="footer"></div>

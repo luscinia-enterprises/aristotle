@@ -20,16 +20,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ca.luscinia.aristotle.model;
+package ca.luscinia.aristotle.config;
 
-public class PublicSearch {
-    private String search;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.stereotype.Component;
 
-    public String getSearch() {
-        return search;
-    }
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-    public void setSearch(String search) {
-        this.search = search;
+@Component
+public class CustomizeLogoutHandler implements LogoutHandler {
+    @Override
+    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        response.setStatus(HttpServletResponse.SC_OK);
+        try {
+            response.sendRedirect("/logout/success");
+        } catch (IOException ignored) {}
     }
 }

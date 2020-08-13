@@ -20,35 +20,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ca.luscinia.aristotle.database.user;
+package ca.luscinia.aristotle.controller.students;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-@Document("role")
-public class Role {
-    @Id
-    private ObjectId id;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-    @Indexed(unique = true, direction = IndexDirection.DESCENDING)
-    private String role;
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+@Controller
+@RequestMapping("/students")
+public class StudentsDefaultController {
+    @RequestMapping()
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("students/index");
     }
 }

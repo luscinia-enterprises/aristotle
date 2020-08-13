@@ -31,11 +31,13 @@ import org.springframework.security.web.authentication.rememberme.PersistentReme
 
 import java.util.Date;
 
-@Document("rememberMeTokens")
+@Document("tokens")
+/*
 @CompoundIndexes({
         @CompoundIndex(name = "i_username", def = "{'username': 1"),
         @CompoundIndex(name = "i_series", def = "{'series': 1")
 })
+ */
 public class Token extends PersistentRememberMeToken {
 
     @Id

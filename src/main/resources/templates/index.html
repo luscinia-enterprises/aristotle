@@ -24,11 +24,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace='parts/head.html :: head'></head>
 <body class="bg-dark" style="min-width: 450px">
-<th:block th:replace='parts/nav.html :: navbar'>0</th:block>
+<th:block th:replace='parts/nav.html :: navbar-public'>0</th:block>
 <th:block th:replace='parts/misc.html :: loginmodal'>0</th:block>
 <div class="container bg-dark">
-    <br/>
-    <div class="card">
+    <div class="card mt-4">
         <div class="card-header text-center">
             <h1 class="card-title">Aristotle Education Platform</h1>
             <p class="card-subtitle">Welcome to the development site for the Aristotle Education Platform</p>
@@ -66,11 +65,6 @@
                 <tr>
                     <td>Timestamp:</td>
                     <td th:text='${#dates.formatISO(#dates.createNow())}'>Error retrieving date.</td>
-                </tr>
-                <tr>
-                    <td>Bootstrap:</td>
-                    <td th:if='${@environment.getProperty("aristotle.bootstrapBeta")}'>5.0.0-alpha1</td>
-                    <td th:unless='${@environment.getProperty("aristotle.bootstrapBeta")}'>4.5.0</td>
                 </tr>
             </table>
         </div>

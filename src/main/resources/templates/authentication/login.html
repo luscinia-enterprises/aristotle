@@ -25,24 +25,146 @@
 <head th:insert='parts/head.html :: head'></head>
 <body class="bg-dark" style="min-width: 450px">
 <div class="container">
-    <div class="card mt-4">
-        <div class="card-header text-center">
-            <th:block th:replace="authentication/parts/nav.html :: nav">0</th:block>
-        </div>
-        <div class="card-body">
-            <h3 class="card-title">Log In</h3>
-            <form th:action="@{/login}" method="post">
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
+    <div class="row justify-content-center">
+        <div class="card mt-4 px-4 py-2 col-sm-6">
+            <nav>
+                <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
+                    <a class="nav-link active" id="nav-general-login-tab" data-toggle="tab" href="#nav-general-login"
+                       role="tab" aria-controls="nav-general-login" aria-selected="true">Login</a>
+                    <a class="nav-link" id="nav-general-register-tab" href="/register"
+                       aria-controls="nav-general-register" aria-selected="true">Register</a>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </form>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div id="nav-general-login" class="tab-pane fade show active" role="tabpanel"
+                     aria-labelledby="nav-login-tab">
+                    <br>
+                    <h3>Log in to your Aristotle Account</h3>
+                    <!--/*@thymesVar id="user" type="ca.luscinia.aristotle.database.User"*/-->
+                    <form th:object="${user}" th:action="@{/login}" th:method="'post'">
+                        <div class="form-group row">
+                            <div class="col-12" th:switch="${error}">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                     th:case="status">
+                                    <strong>Whoops!</strong> It seems like a lock has been placed on your account. This
+                                    could be because you just registered and still need to confirm your email.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                     th:case="crednf">
+                                    <strong>Whoops!</strong> We encountered an error that requires you to log in again.
+                                    Sorry for the inconvenience.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                     th:case="service">
+                                    <strong>Whoops!</strong> We encountered a database problem when trying to log you in.
+                                    If this issue persists, please try again in 5-10 minutes.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                     th:case="badcred">
+                                    <strong>Incorrect Password:</strong> The password you entered is incorrect, please
+                                    try again. If you have forgotten your password as a student, speak with your
+                                    teacher, otherwise contact support at <a href="mailto:support@luscinia.ca">support@luscinia.ca</a>.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                     th:case="nsfcred">
+                                    <strong>Whoops!</strong> You tried to access an area you do not have privileges for.
+                                    If you believe that this was a mistake, please contact support at <a
+                                        href="mailto:support@luscinia.ca">support@luscinia.ca</a>.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                     th:case="rmbmeexp">
+                                    <strong>Login Expired:</strong> You previouly asked us to remember your login but we
+                                    ask that you re-authenticate every 30 days for security reasons.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                     th:case="badsess">
+                                    <strong>Session Expired:</strong> Your browsing session was terminated for an
+                                    unknown reason. Please log in again.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                     th:case="usernf">
+                                    <strong>Incorrect Username!</strong> We could not find a user registered with the username you entered.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                     th:case="unclsfd">
+                                    <strong>Whoops!</strong> We encountered an error that requires you to log in again.
+                                    Sorry for the inconvenience.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="input-group mb-2 mt-3">
+                                <span class="input-group-text">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill"
+                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                  d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                        </svg>
+                                </span>
+                                    <input id="email" name="email" placeholder="user@example.com" type="email"
+                                           required="required" class="form-control" th:field="*{email}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-lock-fill"
+                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
+                                            <path fill-rule="evenodd"
+                                                  d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                                        </svg>
+                                </span>
+                                    <input id="password" name="password" placeholder="Password" type="password"
+                                           required="required" class="form-control" th:field="*{password}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="remember-me" name="aristotle_remember_token">
+                            <label class="form-check-label" for="remember-me">
+                                Remember Me
+                            </label>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <div class="col-1">
+                                <button name="login" type="submit" class="btn btn-secondary">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

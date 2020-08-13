@@ -22,24 +22,26 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-</head>
-<body>
-<th:block th:fragment="nav">
-    <ul class="nav nav-pills card-header-pills justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link active" href="../../static">Log In</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="/register/student">Register Student</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="/register/teacher">Register Teacher</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="/register/parent">Register Parent</a>
-        </li>
-    </ul>
-</th:block>
+<head th:insert='parts/head.html :: head'></head>
+<body class="bg-dark" style="min-width: 450px">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card mt-4 px-4 py-2 col-sm-4">
+            Two Factor Authentication Page
+            <!--
+            C
+            O
+            N
+            T
+            E
+            N
+            T
+            -->
+        </div>
+    </div>
+</div>
+</div>
+<th:block th:replace="parts/footer.html :: footer">0</th:block>
 </body>
+<th:block th:replace="parts/scripts.html :: scripts">0</th:block>
 </html>
