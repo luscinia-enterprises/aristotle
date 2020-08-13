@@ -110,8 +110,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/students/**").hasAuthority("STUDENT")
                 .anyRequest().denyAll()
             .and()
-                .csrf()
-                    .disable()
                 .formLogin()
                     .loginPage("/login").permitAll()
                     .failureHandler(customizeAuthenticationFailureHandler)
