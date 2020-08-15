@@ -22,6 +22,13 @@ jobs:
 
     - name: Build with Maven
       run: mvn clean install
+      env:
+        SPRING_SENDGRID_KEY: ${{ secrets.SPRING_SENDGRID_KEY }}
+        SPRING_SECURITY_TOKENKEY: ${{ secrets.SPRING_SENDGRID_KEY }}
+        SPRING_SECURITY_BCRYPTITER: ${{ secrets.SPRING_SECURITY_BCRYPTITER }}
+        SPRING_SECURITY_ALLOWEDIP: ${{ secrets.SPRING_SECURITY_ALLOWEDIP }}
+        SPRING_REDIS_URL: ${{ secrets.SPRING_REDIS_URL }}
+        SPRING_MONGO_URL: ${{ secrets.SPRING_MONGO_URL }}
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v1
