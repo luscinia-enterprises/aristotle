@@ -28,5 +28,5 @@ jobs:
       with:
         app-name: 'aristotleapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4f56c48e72214da583c9b079dcf86b6b }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8834196299624c22a8230f501e03406b }}
         package: '${{ github.workspace }}/target/*.jar'
