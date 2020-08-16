@@ -50,7 +50,6 @@ public class EntryToolRedirectController {
     @RequestMapping(method = RequestMethod.GET)
     public void index(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
-            System.out.println("RUNNING");
             Object object = authentication.getPrincipal();
             UserDetails user = (UserDetails) object;
             for (DataEntryToolAuth dataEntryToolAuth: dataEntryToolAuthRepository.findAll()) {
@@ -59,7 +58,7 @@ public class EntryToolRedirectController {
                 }
             }
             String id = dataEntryToolAuthRepository.save(new DataEntryToolAuth(user.getUsername(), true)).getId();
-            response.sendRedirect("http://localhost:8081?token=" + id);
+            response.sendRedirect("https://entry.aristotle.luscinia.ca/?token=" + id);
         }
     }
 }
