@@ -28,11 +28,10 @@
 <div class="container">
     <div class="card mt-4">
         <div class="card-header text-center">
-            <th:block th:replace="authentication/parts/nav.html :: nav">0</th:block>
+            <h2>Create an Admin Account</h2>
         </div>
         <div class="card-body">
-            <h3 class="card-title">Create An Admin Account</h3>
-            <form th:action="@{/register/student}" th:object="${user}" method="post">
+            <form th:action="@{/register/admin}" th:object="${user}" method="post">
                 <label for="inputFirstName" class="sr-only">First Name</label>
                 <input th:field="*{firstName}" type="text" id="inputFirstName" class="form-control" placeholder="First Name" required autofocus>
                 <label for="inputLastName" class="sr-only">First Name</label>

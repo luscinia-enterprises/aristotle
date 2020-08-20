@@ -22,6 +22,7 @@
 
 package ca.luscinia.aristotle.controller.admin;
 
+import ca.luscinia.aristotle.config.AristotleConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
@@ -47,6 +48,9 @@ public class EntryToolRedirectController {
     @Autowired
     DataEntryToolAuthRepository dataEntryToolAuthRepository;
 
+    @Autowired
+    AristotleConfigProperties aristotleConfigProperties;
+
     @RequestMapping(method = RequestMethod.GET)
     public void index(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
@@ -58,7 +62,7 @@ public class EntryToolRedirectController {
                 }
             }
             String id = dataEntryToolAuthRepository.save(new DataEntryToolAuth(user.getUsername(), true)).getId();
-            response.sendRedirect("https://entry.aristotle.luscinia.ca/?token=" + id);
+            response.sendRedirect(aristotleConfigProperties.getCduUrl() + "/?token=" + id);
         }
     }
 }

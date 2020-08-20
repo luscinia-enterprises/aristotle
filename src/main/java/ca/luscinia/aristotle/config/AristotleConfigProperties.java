@@ -34,6 +34,7 @@ public class AristotleConfigProperties {
     private String version;
     private String description;
     private String owner;
+    private String cduUrl;
     private String tokenKey;
     private String privilegedIp;
     private boolean useTwilio;
@@ -78,6 +79,14 @@ public class AristotleConfigProperties {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getCduUrl() {
+        return cduUrl;
+    }
+
+    public void setCduUrl(String cduUrl) {
+        this.cduUrl = cduUrl;
     }
 
     public String getTokenKey() {
