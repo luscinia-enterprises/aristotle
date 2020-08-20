@@ -114,7 +114,7 @@ public class RegistrationController extends AristotleController {
 
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
     public ModelAndView adminPage(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView modelAndView = new ModelAndView("authentication/registeradmin");
+        ModelAndView modelAndView = new ModelAndView("authentication/registerAdmin");
         modelAndView.addObject("user", new User());
         return modelAndView;
     }
