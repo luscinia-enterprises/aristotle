@@ -26,53 +26,56 @@
 </head>
 <body>
 <th:block th:fragment="navbar-public">
-<div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand ml-2" href="/">
-            <img alt="Luscinia Enterprises Assn. Logo" height="30" th:src='@{/luscinia.png}' width="30">
-            Aristotle
-        </a>
-        <button aria-controls="navToggle" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-                data-target="#navToggle" data-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand ml-2" href="/">
+                <img alt="Luscinia Enterprises Assn. Logo" height="30" th:src='@{/luscinia.png}' width="30">
+                Aristotle
+            </a>
+            <button aria-controls="navToggle" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-target="#navToggle" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navToggle">
-            <ul class="navbar-nav nav-pills nav-fill mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                       data-toggle="dropdown"
-                       href="#"
-                       role="button">Information</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/info/parents">Parents</a>
-                        <a class="dropdown-item" href="/info/teachers">Teachers</a>
-                        <a class="dropdown-item" href="/info/students">Students</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/info/schools">Schools</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/info/sponsors">Sponsors</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about-us">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://luscinia.ca">About Luscinia</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navToggle">
+                <ul class="navbar-nav nav-pills nav-fill mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                           data-toggle="dropdown"
+                           href="#"
+                           role="button">Information</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/info/parents">Parents</a>
+                            <a class="dropdown-item" href="/info/teachers">Teachers</a>
+                            <a class="dropdown-item" href="/info/students">Students</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/info/schools">Schools</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/info/sponsors">Sponsors</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://luscinia.ca">About Luscinia</a>
+                    </li>
+                </ul>
 
-            <span class="list-inline my-2 my-lg-0">
+                <span class="list-inline my-2 my-lg-0">
                 <button class="btn btn-sm btn-outline-secondary" data-target="#loginmodal" data-toggle="modal"
                         type="button">Log In</button>
-                <button class="btn btn-sm btn-outline-secondary" type="button">Register</button>
+                <a href="/register">
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Register</button>
+                </a>
             </span>
-        </div>
-    </nav>
-</div>
+            </div>
+        </nav>
+    </div>
 </th:block>
 <th:block th:fragment="navbar-auth">
     <ul class="nav nav-pills card-header-pills justify-content-center">
