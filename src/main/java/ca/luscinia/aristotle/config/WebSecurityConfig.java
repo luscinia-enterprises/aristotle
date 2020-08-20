@@ -66,9 +66,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AristotleConfigProperties aristotleConfigProperties;
 
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Bean
     protected BCryptPasswordEncoder bCryptPasswordEncoder() {
         /*
@@ -90,7 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .userDetailsService(customUserDetailsService)
-            .passwordEncoder(bCryptPasswordEncoder);
+            .passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
