@@ -40,14 +40,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
     public void saveAdminUser(User user) {
-        System.out.println("Saving Admin User");
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
         user.setRoles(new ArrayList<>(Collections.singleton("ADMIN")));
@@ -76,20 +75,17 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         User user = userRepository.findByEmail(email);
-        System.out.println("queried user");
         if(user != null) {
-            System.out.println("Found User");
+            List<GrantedAuthority> authorities;
             if (user.isUse2FA()) {
-                List<GrantedAuthority> authorities = getUserAuthority(
+                authorities = getUserAuthority(
                         new ArrayList<String>(Collections.singleton("OTP_LOGIN"))
                 );
-                return buildUserForAuthentication(user, authorities);
             } else {
-                List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-                return buildUserForAuthentication(user, authorities);
+                authorities = getUserAuthority(user.getRoles());
             }
+            return buildUserForAuthentication(user, authorities);
         } else {
-            System.out.println("whoops");
             throw new UsernameNotFoundException("username not found");
         }
     }
