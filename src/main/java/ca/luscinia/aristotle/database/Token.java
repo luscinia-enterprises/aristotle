@@ -33,6 +33,7 @@ import java.util.Date;
 
 @Document("tokens")
 /*
+@Document("rememberMeTokens")
 @CompoundIndexes({
         @CompoundIndex(name = "i_username", def = "{'username': 1"),
         @CompoundIndex(name = "i_series", def = "{'series': 1")
