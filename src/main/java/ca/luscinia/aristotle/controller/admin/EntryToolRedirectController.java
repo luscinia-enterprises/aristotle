@@ -62,7 +62,7 @@ public class EntryToolRedirectController {
                 } catch (NullPointerException ignored) {}
             }
             String id = dataEntryToolAuthRepository.save(new DataEntryToolAuth(user.getUsername(), true)).getId();
-            response.sendRedirect(aristotleConfigProperties.getCduUrl() + "/?token=" + id);
+            response.sendRedirect("https://" + aristotleConfigProperties.getCduUrl() + "/?token=" + id);
         }
     }
 }
