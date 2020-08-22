@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/register")
@@ -54,8 +55,8 @@ public class RegistrationController extends AristotleController {
                                  @RequestParam(name = "learning-style-select", required = false) String learningPref,
                                  @RequestParam(name = "course-code", required = false) String courseCode,
                                  @RequestParam(name = "student-code", required = false) String studentCode) {
-        System.out.println("\n\n" + type + "\n\n" + user.toString() + "\n\n");
         ModelAndView modelAndView = new ModelAndView();
+        user.setUuid(UUID.randomUUID());
         if (customUserDetailsService.findUserByEmail(user.getEmail()) != null) {
             modelAndView.setViewName("authentication/failure");
         } else {
@@ -63,7 +64,6 @@ public class RegistrationController extends AristotleController {
             if (user.getPassword().equals(confirmPassword)) {
                 switch (type) {
                     case "admin":
-                        System.out.println("\n\n\n\n\nwriting to db \n\n\n\n\n");
                         customUserDetailsService.saveAdminUser(user);
                         modelAndView.setViewName("authentication/success");
                         break;

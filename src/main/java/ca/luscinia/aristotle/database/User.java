@@ -31,6 +31,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 @Document("users")
 public class User {
@@ -51,7 +52,6 @@ public class User {
 
     private Date accountCreated;
 
-    // Azure Cosmos DB Shard Key
     private Date dateOfBirth;
 
     private int classicGradeLevel;
@@ -76,6 +76,9 @@ public class User {
     private String secret2FA;
 
     private LearningStyle learningStyle;
+
+    // Azure Cosmos DB Shard Key
+    private UUID uuid;
 
     public ObjectId getId() {
         return id;
@@ -291,6 +294,14 @@ public class User {
 
     public void setLearningStyle(LearningStyle learningStyle) {
         this.learningStyle = learningStyle;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     @Override
