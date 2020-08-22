@@ -67,11 +67,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected BCryptPasswordEncoder bCryptPasswordEncoder() {
         /*
          *  BCrypt Encoder uses the current unix timestamp to determine how many iterations to run
-         *  Iterations will increase by 1 every 1157 days and change (100 000 000 seconds).
+         *  Iterations will increase by 1 every 1736 days and change (150 000 000 seconds).
          */
         return new BCryptPasswordEncoder(
                 BCryptPasswordEncoder.BCryptVersion.$2B,
-                (int) (Instant.now().getEpochSecond()/100000000)
+                (int) (Instant.now().getEpochSecond()/150000000)
         );
     }
 
