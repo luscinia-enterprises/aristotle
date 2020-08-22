@@ -1,10 +1,7 @@
 /*
  * Aristotle Learning Platform: Luscinia Enterprises Assn.
  * Copyright (C) 2020 
- *     Luscinia Enterprises Assn. <development@luscinia.ca>
- *     Varun Patel <vpatel@luscinia.ca>, <varun@varunpatel.ca>
- *     Milan Bumbulovic <mbumbulovic@luscinia.ca>
- *     Jacob Chun <jchun@luscinia.ca>
+ *     1261612 B.C. LTD.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as

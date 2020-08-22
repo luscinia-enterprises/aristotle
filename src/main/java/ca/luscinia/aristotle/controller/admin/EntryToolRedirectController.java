@@ -1,10 +1,7 @@
 /*
  * Aristotle Learning Platform: Luscinia Enterprises Assn.
  * Copyright (C) 2020
- *     Luscinia Enterprises Assn. <development@luscinia.ca>
- *     Varun Patel <vpatel@luscinia.ca>, <varun@varunpatel.ca>
- *     Milan Bumbulovic <mbumbulovic@luscinia.ca>
- *     Jacob Chun <jchun@luscinia.ca>
+ *     1261612 B.C. LTD.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -56,10 +53,13 @@ public class EntryToolRedirectController {
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
             Object object = authentication.getPrincipal();
             UserDetails user = (UserDetails) object;
-            for (DataEntryToolAuth dataEntryToolAuth: dataEntryToolAuthRepository.findAll()) {
-                if (dataEntryToolAuth.getUsername().equals(user.getUsername())) {
-                    dataEntryToolAuthRepository.delete(dataEntryToolAuth);
-                }
+            Iterable<DataEntryToolAuth> iterable = dataEntryToolAuthRepository.findAll();
+            for (DataEntryToolAuth dataEntryToolAuth: iterable) {
+                try {
+                    if (dataEntryToolAuth.getUsername().equals(user.getUsername())) {
+                        dataEntryToolAuthRepository.delete(dataEntryToolAuth);
+                    }
+                } catch (NullPointerException ignored) {}
             }
             String id = dataEntryToolAuthRepository.save(new DataEntryToolAuth(user.getUsername(), true)).getId();
             response.sendRedirect(aristotleConfigProperties.getCduUrl() + "/?token=" + id);
