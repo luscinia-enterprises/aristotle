@@ -72,6 +72,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+      
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mailjet</groupId>
+            <artifactId>mailjet-client</artifactId>
+            <version>4.5.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.itextpdf</groupId>
@@ -83,6 +94,11 @@
             <groupId>org.jboss.aerogear</groupId>
             <artifactId>aerogear-otp-java</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.webauthn4j</groupId>
+            <artifactId>webauthn4j-core</artifactId>
+            <version>0.12.0.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.twilio.sdk</groupId>
@@ -110,26 +126,6 @@
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
             <version>0.40</version>
-        </dependency>
-        <dependency>
-            <groupId>com.webauthn4j</groupId>
-            <artifactId>webauthn4j-core</artifactId>
-            <version>0.12.0.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>com.twilio.sdk</groupId>
-            <artifactId>twilio</artifactId>
-            <version>7.54.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sendgrid</groupId>
-            <artifactId>sendgrid-java</artifactId>
-            <version>4.6.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mailjet</groupId>
-            <artifactId>mailjet-client</artifactId>
-            <version>4.5.0</version>
         </dependency>
 
         <dependency>
@@ -157,16 +153,6 @@
             <groupId>org.webjars.npm</groupId>
             <artifactId>popper.js</artifactId>
             <version>1.16.1-lts</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.npm</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.5.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>ckeditor</artifactId>
-            <version>18.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.webjars.npm</groupId>
