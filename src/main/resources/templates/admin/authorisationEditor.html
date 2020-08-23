@@ -1,0 +1,74 @@
+<!--
+  ~ Aristotle Learning Platform: Luscinia Enterprises Assn.
+  ~ Copyright (C) 2020
+  ~     1261612 B.C. LTD.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert='parts/head.html :: head'></head>
+<body class="bg-dark" style="min-width: 450px">
+
+<div class="container" align="center" style="align-content:center;margin-top:30vh">
+    <h4 class="text-white" th:text="${type} + ' Authorisation Management Tool'">Authorisation Management Tool</h4>
+    <br>
+    <a href="/admin">Back to Admin Portal</a>
+    <br>
+    <br>
+    <div class="accordion" id="accordionAuthMgmt">
+        <div class="card">
+            <div class="card-header" id="headingExistingAuths">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseExistingAuths" aria-expanded="false" aria-controls="collapseExistingAuths">
+                        Manage Existing Authorisations
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseExistingAuths" class="collapse p-2" aria-labelledby="headingExistingAuths" data-parent="#accordionAuthMgmt">
+                <th:block th:if="${existingAuths} != null">
+                <div class="row" th:each="auth : ${existingAuths}">
+                    <p class="col-sm-10" th:text="${auth}">Error...</p>
+                    <form class="col-sm-2" th:action="'/admin/authorisationEditor/deAuthorise' + ${type}" method="POST">
+                        <input type="text" th:value="${auth}" name="revocation" hidden/>
+                        <input type="submit" value="Revoke" />
+                    </form>
+                </div>
+                </th:block>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingAddAuths">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseAddAuths" aria-expanded="false" aria-controls="collapseAddAuths">
+                        Add New Authorisation
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseAddAuths" class="collapse" aria-labelledby="headingAddAuths" data-parent="#accordionAuthMgmt">
+                <form class="row p-2" th:action="'/admin/authorisationEditor/authorise' + ${type}" method="POST">
+                    <label class="col-sm-5" for="newAuthEmail">New Authorisation E-Mail:</label>
+                    <input class="col-sm-5" type="email" name="email" id="newAuthEmail">
+                    <input class="col-sm-2" type="submit" value="Add" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="parts/footer.html :: footer">0</th:block>
+
+</body>
+<th:block th:replace="parts/scripts.html :: scripts">0</th:block>
+</html>
