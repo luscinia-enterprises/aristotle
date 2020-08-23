@@ -20,8 +20,10 @@
 package ca.luscinia.aristotle.controller.authentication;
 
 import ca.luscinia.aristotle.controller.AristotleController;
+import ca.luscinia.aristotle.database.Admin;
 import ca.luscinia.aristotle.database.User;
 import ca.luscinia.aristotle.database.general.LearningStyle;
+import ca.luscinia.aristotle.repository.AdminRepository;
 import ca.luscinia.aristotle.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.util.matcher.IpAddressMatcher;
@@ -32,6 +34,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 @Controller
@@ -39,6 +43,8 @@ import java.util.UUID;
 public class RegistrationController extends AristotleController {
     @Autowired
     CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    AdminRepository adminRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView registerPage(HttpServletRequest request, HttpServletResponse response) {
@@ -64,12 +70,32 @@ public class RegistrationController extends AristotleController {
             if (user.getPassword().equals(confirmPassword)) {
                 switch (type) {
                     case "admin":
-                        customUserDetailsService.saveAdminUser(user);
+                        Admin adminAuths = new Admin();
+                        try {
+                            adminAuths = adminRepository.findAdminByKeyIs("authorisations.admin");
+                        } catch (NullPointerException ignored) {
+                            adminAuths = null;
+                        }
                         modelAndView.setViewName("authentication/success");
+                        if (adminAuths == null) {
+                            adminAuths = new Admin();
+                            adminAuths.setKey("authorisations.admin");
+                            adminAuths.setValues(new ArrayList<>(Collections.singleton(user.getEmail())));
+                            customUserDetailsService.saveAdminUser(user);
+                        } else if (adminAuths.getValues().contains(user.getEmail()))
+                            customUserDetailsService.saveAdminUser(user);
+                        else
+                            modelAndView.setViewName("authentication/failure");
                         break;
                     case "teacher":
-                        // check that teacher email is approved in admindb
-                        customUserDetailsService.saveTeacherUser(user);
+                        Admin teacherAuths = adminRepository.findAdminByKeyIs("authorisations.teacher");
+                        modelAndView.setViewName("authentication/success");
+                        if (teacherAuths == null)
+                            customUserDetailsService.saveTeacherUser(user);
+                        else if (teacherAuths.getValues().contains(user.getEmail()))
+                            customUserDetailsService.saveTeacherUser(user);
+                        else
+                            modelAndView.setViewName("authentication/failure");
                         break;
                     case "parent":
                         user.getStudents().add(studentCode);
