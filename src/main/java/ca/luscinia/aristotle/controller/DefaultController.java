@@ -19,9 +19,11 @@
 
 package ca.luscinia.aristotle.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,4 +61,8 @@ public class DefaultController extends AristotleController {
         ModelAndView modelAndView = new ModelAndView("about-us");
         return modelAndView;
     }
+
+    @RequestMapping(path = "/health")
+    @ResponseStatus(HttpStatus.OK)
+    public void health() {}
 }
