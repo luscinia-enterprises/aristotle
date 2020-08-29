@@ -32,11 +32,11 @@
     <version>DEVELOPMENT</version>
     <name>Aristotle Education Platform</name>
     <description>The Aristotle Education Platform is currently in development by Varun Patel and Luscinia Enterprises
-        Assn.
+        Assn. on behalf of 1261612 B.C. Ltd.
     </description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
@@ -62,26 +62,15 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-json</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-      
-        <dependency>
-            <groupId>com.sendgrid</groupId>
-            <artifactId>sendgrid-java</artifactId>
-            <version>4.6.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mailjet</groupId>
-            <artifactId>mailjet-client</artifactId>
-            <version>4.5.0</version>
         </dependency>
 
         <dependency>
@@ -106,9 +95,20 @@
             <version>7.54.0</version>
         </dependency>
         <dependency>
+            <groupId>io.ipinfo</groupId>
+            <artifactId>ipinfo-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.sendgrid</groupId>
             <artifactId>sendgrid-java</artifactId>
             <version>4.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mailjet</groupId>
+            <artifactId>mailjet-client</artifactId>
+            <version>4.5.0</version>
         </dependency>
 
         <dependency>
