@@ -31,6 +31,7 @@ public class AristotleConfigProperties {
     private String version;
     private String description;
     private String owner;
+    private String ipgeoKey;
     private String cduUrl;
     private String tokenKey;
     private String privilegedIp;
@@ -76,6 +77,14 @@ public class AristotleConfigProperties {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getIpgeoKey() {
+        return ipgeoKey;
+    }
+
+    public void setIpgeoKey(String ipgeoKey) {
+        this.ipgeoKey = ipgeoKey;
     }
 
     public String getCduUrl() {
