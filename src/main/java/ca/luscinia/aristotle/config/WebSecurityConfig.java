@@ -33,13 +33,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import sun.security.util.ManifestDigester;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 
 @Configuration
 @EnableWebSecurity
@@ -97,10 +93,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/info/**").permitAll()
                 .antMatchers("/register/**").permitAll()
                 .antMatchers("/register/admin").hasIpAddress("0/0")
-                .antMatchers("/account/**").hasAnyAuthority()
+                .antMatchers("/login/2FA").hasAuthority("2FA")
+                .antMatchers("/account").hasAnyAuthority("ADMIN", "TEACHER", "PARENT", "STUDENT")
+                .antMatchers("/account/admin").hasAuthority("ADMIN")
+                .antMatchers("/account/teacher").hasAuthority("TEACHER")
+                .antMatchers("/account/parent").hasAuthority("PARENT")
+                .antMatchers("/account/student").hasAuthority("STUDENT")
+                .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/teachers").hasAuthority("TEACHER")
                 .antMatchers("/teachers/**").hasAuthority("TEACHER")
+                .antMatchers("/parents").hasAuthority("PARENT")
                 .antMatchers("/parents/**").hasAuthority("PARENT")
+                .antMatchers("/students").hasAuthority("STUDENT")
                 .antMatchers("/students/**").hasAuthority("STUDENT")
                 .anyRequest().denyAll()
             .and()
@@ -123,8 +128,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .logout()
                     .deleteCookies("aristotle_session_persist")
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .addLogoutHandler(customizeLogoutHandler)
+                    .logoutSuccessUrl("/logout/success")
             .and()
                 .headers(headers -> headers
                         .cacheControl(HeadersConfigurer.CacheControlConfig::disable)

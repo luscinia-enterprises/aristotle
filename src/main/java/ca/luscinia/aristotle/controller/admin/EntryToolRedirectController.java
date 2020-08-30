@@ -61,7 +61,14 @@ public class EntryToolRedirectController {
                     }
                 } catch (NullPointerException ignored) {}
             }
-            String id = dataEntryToolAuthRepository.save(new DataEntryToolAuth(user.getUsername(), true)).getId();
+            String id = dataEntryToolAuthRepository.save(
+                    new DataEntryToolAuth(
+                            user.getUsername(),
+                            true,
+                            request.getRemoteAddr().toString(),
+                            aristotleConfigProperties.getCduUrl()
+                    )
+            ).getId();
             response.sendRedirect("https://" + aristotleConfigProperties.getCduUrl() + "/?token=" + id);
         }
     }
@@ -78,10 +85,14 @@ class DataEntryToolAuth implements Serializable {
     private String id;
     private String username;
     private boolean authorized;
+    private String userIP;
+    private String redirectedURL;
 
-    public DataEntryToolAuth(String username, boolean authorized) {
+    public DataEntryToolAuth(String username, boolean authorized, String ip, String url) {
         this.username = username;
         this.authorized = authorized;
+        this.userIP = ip;
+        this.redirectedURL = url;
     }
 
     public String getId() {
@@ -106,5 +117,21 @@ class DataEntryToolAuth implements Serializable {
 
     public void setAuthorized(boolean authorized) {
         this.authorized = authorized;
+    }
+
+    public String getUserIP() {
+        return userIP;
+    }
+
+    public void setUserIP(String userIP) {
+        this.userIP = userIP;
+    }
+
+    public String getRedirectedURL() {
+        return redirectedURL;
+    }
+
+    public void setRedirectedURL(String redirectedURL) {
+        this.redirectedURL = redirectedURL;
     }
 }
