@@ -8,7 +8,13 @@
 
 name: Anchore Container Scan
 
-on: push
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '20 7 * * 1,2,3,4,5,6'
 
 jobs:
   Anchore-Build-Scan:
