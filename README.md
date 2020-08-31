@@ -1,4 +1,12 @@
 # Aristotle Education Platform
+![Staging Deploy](https://github.com/luscinia-enterprises/aristotle/workflows/Build%20and%20deploy%20JAR%20app%20to%20Azure%20Web%20App%20-%20aristotleapp(staging)/badge.svg)
+![CodeQL](https://github.com/luscinia-enterprises/aristotle/workflows/CodeQL/badge.svg)
+
+![Aristotle Uptime](https://img.shields.io/uptimerobot/ratio/m780026806-56b4aef568b9f266dd4439dd?style=plastic): [https://aristotle.luscinia.ca](https://aristotle.luscinia.ca)
+
+![Aristotle Staging Uptime](https://img.shields.io/uptimerobot/ratio/m785868438-7b69cf8340bb47910de76332?style=plastic): [https://staging.aristotle.luscinia.ca](https://staging.aristotle.luscinia.ca)
+
+![Docker Build](https://img.shields.io/docker/cloud/build/lusciniaservices/aristotleapp?style=plastic)
 
 ## Overview
 
