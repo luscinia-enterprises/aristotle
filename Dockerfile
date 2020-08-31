@@ -1,4 +1,4 @@
-FROM maven:3-openjdk-11-slim as builder
+FROM maven:3-adoptopenjdk-11 as builder
 
 RUN mkdir -p /build
 WORKDIR /build
