@@ -65,7 +65,7 @@ public class EntryToolRedirectController {
                     new DataEntryToolAuth(
                             user.getUsername(),
                             true,
-                            request.getRemoteAddr().toString(),
+                            request.getRemoteAddr(),
                             aristotleConfigProperties.getCduUrl()
                     )
             ).getId();

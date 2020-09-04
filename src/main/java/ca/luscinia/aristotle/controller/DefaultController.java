@@ -23,6 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(path = "/")
 public class DefaultController extends AristotleController {
 
-    @RequestMapping("")
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView home(
             HttpServletRequest request,
             HttpServletResponse response
@@ -42,7 +43,7 @@ public class DefaultController extends AristotleController {
         return modelAndView;
     }
 
-    @RequestMapping(path = "/info/{page}")
+    @RequestMapping(path = "/info/{page}", method = RequestMethod.GET)
     public ModelAndView students(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -53,7 +54,7 @@ public class DefaultController extends AristotleController {
         return modelAndView;
     }
 
-    @RequestMapping(path = "/about-us")
+    @RequestMapping(path = "/about-us", method = RequestMethod.GET)
     public ModelAndView aboutUs(
             HttpServletRequest request,
             HttpServletResponse response
@@ -62,7 +63,7 @@ public class DefaultController extends AristotleController {
         return modelAndView;
     }
 
-    @RequestMapping(path = "/health")
+    @RequestMapping(path = "/health", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public void health() {}
 }
