@@ -18,7 +18,7 @@
   -->
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 </head>
 <body>
@@ -64,12 +64,12 @@
                 </ul>
 
                 <span class="list-inline my-2 my-lg-0">
-                <button class="btn btn-sm btn-outline-secondary" data-target="#loginmodal" data-toggle="modal"
-                        type="button">Log In</button>
-                <a href="/register">
-                    <button class="btn btn-sm btn-outline-secondary" type="button">Register</button>
-                </a>
-            </span>
+                    <button class="btn btn-sm btn-outline-secondary" data-target="#loginmodal" data-toggle="modal"
+                            type="button">Log In</button>
+                    <a href="/register">
+                        <button class="btn btn-sm btn-outline-secondary" type="button">Register</button>
+                    </a>
+                </span>
             </div>
         </nav>
     </div>

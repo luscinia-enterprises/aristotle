@@ -31,6 +31,8 @@ public class Status {
     private boolean accountLocked;
     private boolean accountSuspended;
     private boolean accountBlocked;
+    private boolean accountExpired;
+    private boolean credentialsExpired;
     private boolean pendingDeletion;
     private boolean pendingConfirmation;
     private boolean pendingAction;
@@ -67,6 +69,22 @@ public class Status {
 
     public void setAccountBlocked(boolean accountBlocked) {
         this.accountBlocked = accountBlocked;
+    }
+
+    public boolean isAccountExpired() {
+        return accountExpired;
+    }
+
+    public void setAccountExpired(boolean accountExpired) {
+        this.accountExpired = accountExpired;
+    }
+
+    public boolean isCredentialsExpired() {
+        return credentialsExpired;
+    }
+
+    public void setCredentialsExpired(boolean credentialsExpired) {
+        this.credentialsExpired = credentialsExpired;
     }
 
     public boolean isPendingDeletion() {

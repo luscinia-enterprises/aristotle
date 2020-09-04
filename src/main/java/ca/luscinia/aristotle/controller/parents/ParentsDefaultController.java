@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/parents")
 public class ParentsDefaultController {
-    @RequestMapping()
+    @RequestMapping("")
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
         return new ModelAndView("parents/index");
     }

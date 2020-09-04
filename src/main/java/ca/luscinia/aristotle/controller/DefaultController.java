@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(path = "/")
 public class DefaultController extends AristotleController {
 
-    @RequestMapping()
+    @RequestMapping("")
     public ModelAndView home(
             HttpServletRequest request,
             HttpServletResponse response
