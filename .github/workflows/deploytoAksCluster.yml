@@ -1,0 +1,51 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: luscinia.azurecr.io
+        username: ${{ secrets.acr_luscinia_username }}
+        password: ${{ secrets.acr_luscinia_password }}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t luscinia.azurecr.io/aristotleplatform:${{ github.sha }}
+        docker push luscinia.azurecr.io/aristotleplatform:${{ github.sha }}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{ secrets.aks_aristotleplatform_kubeConfig }}
+      id: login
+    
+    - name: Create namespace
+      run: |
+        namespacePresent=`kubectl get namespace | grep aristotle-education-platform-prod | wc -l`
+        if [ $namespacePresent -eq 0 ]
+        then
+            echo `kubectl create namespace aristotle-education-platform-prod`
+        fi
+
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: aristotle-education-platform-prod
+        container-registry-url: luscinia.azurecr.io
+        container-registry-username: ${{ secrets.acr_luscinia_username }}
+        container-registry-password: ${{ secrets.acr_luscinia_password }}
+        secret-name: aristotlepladockerauth
+       
+    - uses: azure/k8s-deploy@v1.2
+      with:
+        namespace: aristotle-education-platform-prod
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+          manifests/ingress.yml
+        images: |
+          luscinia.azurecr.io/aristotleplatform:${{ github.sha }}
+        imagepullsecrets: |
+          aristotlepladockerauth
