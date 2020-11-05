@@ -25,8 +25,11 @@ spec:
           - secretRef:
               name: aristotle-communications-environment-staging
           resources:
-            limits:
+            requests:
               memory: "256Mi"
+              cpu: "150m"
+            limits:
+              memory: "1024Mi"
               cpu: "500m"
           ports:
             - name: web
