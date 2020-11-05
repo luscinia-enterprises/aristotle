@@ -1,19 +1,45 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: "aristotleplatform-6596"
+  name: aristotle-app
+  namespace: aristotle-app-staging
+  labels:
+    app: aristotle-app
+
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: "aristotleplatform-6596"
+      app: aristotle-app
   template:
     metadata:
       labels:
-        app: "aristotleplatform-6596"
+        app: aristotle-app
     spec:
       containers:
-        - name: "aristotleplatform-6596"
-          image: "luscinia.azurecr.io/aristotleplatform"
+        - name: aristotle-app
+          image: "aristotleplatform.azurecr.io/aristotle-app"
+          envFrom:
+          - secretRef:
+              name: aristotle-app-environment-staging
+          - secretRef:
+              name: aristotle-communications-environment-staging
+          resources:
+            limits:
+            - memory: "256Mi"
+              cpu: "500m"
           ports:
-          - containerPort: 80
+            - name: web
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 20
