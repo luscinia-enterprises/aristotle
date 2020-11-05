@@ -1,19 +1,33 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: "aristotleeducationplatform-c749"
+  name: aristotle-app
+  namespace: aristotle-app-staging
+  labels:
+    app: aristotle-app
+
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: "aristotleeducationplatform-c749"
+      app: aristotle-app
   template:
     metadata:
       labels:
-        app: "aristotleeducationplatform-c749"
+        app: aristotle-app
     spec:
       containers:
-        - name: "aristotleeducationplatform-c749"
-          image: "aristotleplatform.azurecr.io/aristotleeducationplatform"
+        - name: aristotle-app
+          image: "aristotleplatform.azurecr.io/aristotle-app"
+          envFrom:
+          - secretRef:
+              name: aristotle-app-environment-staging
+          - secretRef:
+              name: aristotle-communications-environment-staging
+          resources:
+            limits:
+            - memory: "256Mi"
+              cpu: "500m"
           ports:
-          - containerPort: 8080
+            - name: web
+              containerPort: 8080

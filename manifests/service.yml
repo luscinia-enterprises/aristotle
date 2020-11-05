@@ -1,15 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: "aristotleeducationplatform-c749"
-    labels:
-        app: "aristotleeducationplatform-c749"
+  name: aristotle-app
+  namespace: aristotle-app-prod
+
 spec:
-    type: ClusterIP
-    ports:
-    - port: 8080
-      targetPort: 8080
-      protocol: TCP
-      name: http
-    selector:
-        app: "aristotleeducationplatform-c749"
+  ports:
+    - protocol: TCP
+      name: web
+      port: 8080
+  selector:
+    app: aristotle-app

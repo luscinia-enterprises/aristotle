@@ -1,17 +1,36 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-    name: "aristotleeducationplatform-c749"
-    labels:
-        app: "aristotleeducationplatform-c749"
-    annotations:
-        kubernetes.io/ingress.class: addon-http-application-routing
+  name: aristotle-app
+  namespace: aristotle-app-staging
 spec:
-    rules:
-        - host: aristotle-app-staging-aristotleeducationplatform-c749.1c471d97eada4acd9619.canadacentral.aksapp.io
-          http:
-            paths:
-            - path: /
-              backend:
-                serviceName: "aristotleeducationplatform-c749"
-                servicePort: 8080
+  entryPoints:
+    - http
+  routes:
+  - kind: Rule
+    match: Host(`staging.aristotle.luscinia.ca`)
+    priority: 100
+    services:
+    - name: aristotle-app
+      port: 8080
+  middlewares:
+  - name: https-redirect
+    namespace: default
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: aristotle-app-tls
+  namespace: aristotle-app-staging
+spec:
+  entryPoints:
+    - https
+  routes:
+  - kind: Rule
+    match: Host(`staging.aristotle.luscinia.ca`)
+    services:
+    - name: aristotle-app
+      port: 8080
+  tls:
+    secretName: aristotle-cert-staging

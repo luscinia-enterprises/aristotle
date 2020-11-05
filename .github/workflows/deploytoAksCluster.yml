@@ -1,4 +1,7 @@
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -14,8 +17,8 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t aristotleplatform.azurecr.io/aristotleeducationplatform:${{ github.sha }}
-        docker push aristotleplatform.azurecr.io/aristotleeducationplatform:${{ github.sha }}
+        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t aristotleplatform.azurecr.io/aristotle-app:${{ github.sha }}
+        docker push aristotleplatform.azurecr.io/aristotle-app:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1
       with:
@@ -45,7 +48,8 @@ jobs:
           manifests/deployment.yml
           manifests/service.yml
           manifests/ingress.yml
+          manifesta/autoscale.yml
         images: |
-          aristotleplatform.azurecr.io/aristotleeducationplatform:${{ github.sha }}
+          aristotleplatform.azurecr.io/aristotle-app:${{ github.sha }}
         imagepullsecrets: |
           aristotleedudockerauth
