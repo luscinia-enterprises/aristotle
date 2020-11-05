@@ -1,3 +1,6 @@
+
+name: Deploy to Azure Kubernetes Service (Luscinia Staging)
+
 on:
   push:
     branches:
