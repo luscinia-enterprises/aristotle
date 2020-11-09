@@ -26,12 +26,17 @@ spec:
           resources:
             requests:
 <<<<<<< HEAD
+<<<<<<< HEAD
               memory: "256Mi"
               cpu: "150m"
 =======
               memory: "512Mi"
               cpu: "50m"
 >>>>>>> 3b7bc6c... kubernetes
+=======
+              memory: "512Mi"
+              cpu: "500m"
+>>>>>>> c9595149a3cd63253c07140873614ece0d9f7761
             limits:
               memory: "1024Mi"
               cpu: "75m"
