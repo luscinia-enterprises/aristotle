@@ -13,9 +13,11 @@ spec:
     services:
     - name: aristotle-app
       port: 8080
-  middlewares:
-  - name: https-redirect
-    namespace: default
+    middlewares:
+    - name: https-redirect
+      namespace: default
+    - name: security-headers
+      namespace: default
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -31,6 +33,9 @@ spec:
     match: Host(`staging.aristotle.luscinia.ca`)
     services:
     - name: aristotle-app
-      port: 8080
+      port: 8080  
+    middlewares:
+    - name: security-headers
+      namespace: default
   tls:
     secretName: aristotle-cert-staging

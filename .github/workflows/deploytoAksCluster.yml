@@ -51,7 +51,6 @@ jobs:
           manifests/deployment.yml
           manifests/service.yml
           manifests/ingress.yml
-          manifests/autoscale.yml
         images: |
           aristotleplatform.azurecr.io/aristotle-app:${{ github.sha }}
         imagepullsecrets: |

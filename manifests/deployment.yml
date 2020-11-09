@@ -7,7 +7,6 @@ metadata:
     app: aristotle-app
 
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: aristotle-app
@@ -26,11 +25,16 @@ spec:
               name: aristotle-communications-environment-staging
           resources:
             requests:
+<<<<<<< HEAD
               memory: "256Mi"
               cpu: "150m"
+=======
+              memory: "512Mi"
+              cpu: "50m"
+>>>>>>> 3b7bc6c... kubernetes
             limits:
               memory: "1024Mi"
-              cpu: "500m"
+              cpu: "75m"
           ports:
             - name: web
               containerPort: 8080
