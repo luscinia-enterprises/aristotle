@@ -38,4 +38,4 @@ spec:
     - name: security-headers
       namespace: default
   tls:
-    secretName: aristotle-cert-staging
+    secretName: aristotle-cert
