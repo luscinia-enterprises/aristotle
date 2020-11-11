@@ -50,7 +50,6 @@ jobs:
         manifests: |
           manifests/deployment.yml
           manifests/service.yml
-          manifests/ingress.yml
         images: |
           aristotleplatform.azurecr.io/aristotle-app:${{ github.sha }}
         imagepullsecrets: |
