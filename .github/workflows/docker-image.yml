@@ -12,7 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Login to Docker Registry
+      run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker.pkg.github.com/luscinia-enterprises/aristotle/aristotle-app:latest
+      run: docker build . --file Dockerfile --tag ghcr.io/luscinia-enterprises/aristotle-app:latest
     - name: Push the Docker image
-      run: docker push docker.pkg.github.com/luscinia-enterprises/aristotle/aristotle-app:latest
+      run: docker push ghcr.io/luscinia-enterprises/aristotle-app:latest
