@@ -13,3 +13,5 @@ jobs:
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.3.0
+        with:
+          tags: ghcr.io/luscinia-enterprises/aristotle-app:latest
