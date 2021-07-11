@@ -23,6 +23,7 @@ import ca.luscinia.aristotle.controller.AristotleController;
 import ca.luscinia.aristotle.database.Admin;
 import ca.luscinia.aristotle.database.User;
 import ca.luscinia.aristotle.database.general.LearningStyle;
+import ca.luscinia.aristotle.database.user.Status;
 import ca.luscinia.aristotle.repository.AdminRepository;
 import ca.luscinia.aristotle.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,7 @@ public class RegistrationController extends AristotleController {
                 switch (type) {
                     case "admin":
                         Admin adminAuths;
+                        user.setStatus(new Status());
                         try {
                             adminAuths = adminRepository.findAdminByKeyIs("authorisations.admin");
                         } catch (NullPointerException ignored) {

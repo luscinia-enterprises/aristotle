@@ -28,16 +28,16 @@ public class Status {
     @Id
     private ObjectId id;
 
-    private boolean accountLocked;
-    private boolean accountSuspended;
-    private boolean accountBlocked;
-    private boolean accountExpired;
-    private boolean credentialsExpired;
-    private boolean pendingDeletion;
-    private boolean pendingConfirmation;
-    private boolean pendingAction;
+    private boolean accountLocked = false;
+    private boolean accountSuspended = false;
+    private boolean accountBlocked = false;
+    private boolean accountExpired = false;
+    private boolean credentialsExpired = false;
+    private boolean pendingDeletion = false;
+    private boolean pendingConfirmation = false;
+    private boolean pendingAction = false;
 
-    private String detailedStatus;
+    private String detailedStatus = "";
 
     public ObjectId getId() {
         return id;
