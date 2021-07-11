@@ -1,6 +1,6 @@
 /*
  * Aristotle Learning Platform: Luscinia Enterprises Assn.
- * Copyright (C) 2020 
+ * Copyright (C) 2020
  *     1261612 B.C. LTD.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,20 +17,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ca.luscinia.aristotle.controller.teachers;
+package ca.luscinia.aristotle.controller.account;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 @Controller
-@RequestMapping("/teachers")
-public class TeachersDefaultController {
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
-        return new ModelAndView("teachers/index");
-    }
+@RequestMapping("/account/teacher")
+public class TeacherAccountController {
 }

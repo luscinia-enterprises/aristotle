@@ -28,14 +28,16 @@ public class Status {
     @Id
     private ObjectId id;
 
-    private boolean accountLocked;
-    private boolean accountSuspended;
-    private boolean accountBlocked;
-    private boolean pendingDeletion;
-    private boolean pendingConfirmation;
-    private boolean pendingAction;
+    private boolean accountLocked = false;
+    private boolean accountSuspended = false;
+    private boolean accountBlocked = false;
+    private boolean accountExpired = false;
+    private boolean credentialsExpired = false;
+    private boolean pendingDeletion = false;
+    private boolean pendingConfirmation = false;
+    private boolean pendingAction = false;
 
-    private String detailedStatus;
+    private String detailedStatus = "";
 
     public ObjectId getId() {
         return id;
@@ -67,6 +69,22 @@ public class Status {
 
     public void setAccountBlocked(boolean accountBlocked) {
         this.accountBlocked = accountBlocked;
+    }
+
+    public boolean isAccountExpired() {
+        return accountExpired;
+    }
+
+    public void setAccountExpired(boolean accountExpired) {
+        this.accountExpired = accountExpired;
+    }
+
+    public boolean isCredentialsExpired() {
+        return credentialsExpired;
+    }
+
+    public void setCredentialsExpired(boolean credentialsExpired) {
+        this.credentialsExpired = credentialsExpired;
     }
 
     public boolean isPendingDeletion() {

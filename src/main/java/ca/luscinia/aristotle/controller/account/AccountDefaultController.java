@@ -1,6 +1,6 @@
 /*
  * Aristotle Learning Platform: Luscinia Enterprises Assn.
- * Copyright (C) 2020 
+ * Copyright (C) 2020
  *     1261612 B.C. LTD.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,8 +17,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package ca.luscinia.aristotle.controller.teachers;
+package ca.luscinia.aristotle.controller.account;
 
+import ca.luscinia.aristotle.database.User;
+import ca.luscinia.aristotle.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,11 +30,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 @Controller
-@RequestMapping("/teachers")
-public class TeachersDefaultController {
+@RequestMapping("/account")
+public class AccountDefaultController {
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
-        return new ModelAndView("teachers/index");
+    public ModelAndView modelAndView(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Authentication authentication) {
+        ModelAndView modelAndView = new ModelAndView("account/index");
+        User user = userRepository.findByEmail(authentication.getName());
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 }
