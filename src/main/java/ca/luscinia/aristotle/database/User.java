@@ -21,6 +21,7 @@ package ca.luscinia.aristotle.database;
 
 import ca.luscinia.aristotle.database.general.LearningStyle;
 import ca.luscinia.aristotle.database.user.LoginRecord;
+import ca.luscinia.aristotle.database.user.PrivacySettings;
 import ca.luscinia.aristotle.database.user.SecurityQuestion;
 import ca.luscinia.aristotle.database.user.Status;
 import org.bson.types.ObjectId;
@@ -65,6 +66,7 @@ public class User {
 
     private boolean enabled;
     private Status status;
+    private PrivacySettings privacySettings;
 
     @Indexed(unique = true, direction = IndexDirection.DESCENDING)
     private String passwordResetKey;
