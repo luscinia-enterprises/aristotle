@@ -22,20 +22,28 @@
 <head th:insert='parts/head.html :: head'></head>
 <body class="bg-dark" style="min-width: 450px">
 
-<div class="container" align="center" style="align-content:center;margin-top:30vh">
+<div class="container text-center pt-4 justify-content-center">
     <h4 class="text-white">Aristotle Admin Panel</h4>
     <br>
-    <div class="card" style="width: 20rem;">
-        <div class="btn-group-vertical">
-            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary">Aristotle Webpage</a>
-            <a href="/admin/dataEntryTool" class="btn btn-outline-secondary">Classic Data Entry Tool</a>
-            <a href="/admin/authorisationEditor/admin" class="btn btn-outline-secondary">Admin Authorisation Management</a>
-            <a href="/admin/authorisationEditor/teacher" class="btn btn-outline-secondary">Teacher Authorisation Management</a>
-            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary disabled">Assessment Resource Tool</a>
-            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary disabled">Non-Assessment Resource Tool</a>
-            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary disabled">Account Management System</a>
-            <a href="https://aristotle.luscinia.ca/" class="btn btn-outline-secondary disabled">Application Management System</a>
-        </div>
+    <div class="row justify-content-center">
+            <div class="btn-group-vertical col-auto">
+                <a href="/" class="btn btn-secondary">Aristotle Webpage</a>
+                <a href="/admin/dataEntryTool" class="btn btn-secondary">Classic Data Entry Tool</a>
+                <a href="/admin/authorisationEditor/admin" class="btn btn-secondary">Admin Authorisation
+                    Management</a>
+                <a href="/admin/authorisationEditor/teacher" class="btn btn-secondary">Teacher Authorisation
+                    Management</a>
+                <a href="https://aristotle.luscinia.ca/" class="btn btn-secondary disabled">Assessment Resource
+                    Tool</a>
+                <a href="https://aristotle.luscinia.ca/" class="btn btn-secondary disabled">Non-Assessment
+                    Resource Tool</a>
+                <a href="https://aristotle.luscinia.ca/" class="btn btn-secondary disabled">Account Management
+                    System</a>
+                <a href="https://aristotle.luscinia.ca/" class="btn btn-secondary disabled">Application
+                    Management System</a>
+                <a href="/account" class="btn btn-secondary">My Account</a>
+                <a href="/logout" class="btn btn-warning">Log Out</a>
+            </div>
     </div>
 </div>
 <th:block th:replace="parts/footer.html :: footer">0</th:block>

@@ -1,0 +1,71 @@
+<!--
+  ~ Aristotle Learning Platform: Luscinia Enterprises Assn.
+  ~ Copyright (C) 2020
+  ~     1261612 B.C. LTD.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace='parts/head.html :: head'></head>
+<body class="bg-dark" style="min-width: 450px">
+<h2 class="text-white text-center my-4">My Account</h2>
+<div class="container bg-white">
+    <div class="row py-3">
+        <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab"
+                   aria-controls="v-pills-overview" aria-selected="true">Overview</a>
+                <a class="nav-link" id="v-pills-privacy-tab" data-toggle="pill" href="#v-pills-privacy" role="tab"
+                   aria-controls="v-pills-privacy" aria-selected="false">Privacy</a>
+                <a class="nav-link" id="v-pills-accounts-tab" data-toggle="pill" href="#v-pills-accounts" role="tab"
+                   aria-controls="v-pills-accounts" aria-selected="false">Linked Accounts</a>
+                <a class="nav-link" id="v-pills-twofactor-tab" data-toggle="pill" href="#v-pills-twofactor" role="tab"
+                   aria-controls="v-pills-twofactor" aria-selected="false">Two-Factor Authentication</a>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel"
+                     aria-labelledby="v-pills-overview-tab">
+                    <p>User: <span sec:authentication="name">Error!</span></p>
+                    <p sec:authorize='hasAnyAuthority("ADMIN","TEACHER")'>Authorised Roles:
+                        <span sec:authentication="principal.authorities">Error!</span>
+                    </p>
+                    <p>
+                        Account Type:
+                        <span sec:authorize='hasAuthority("ADMIN")'>Admin</span>
+                        <span sec:authorize='hasAuthority("PARENT")'>Parent</span>
+                        <span sec:authorize='hasAuthority("STUDENT")'>Student</span>
+                        <span sec:authorize='hasAuthority("TEACHER")'>Teacher</span>
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills-privacy" role="tabpanel" aria-labelledby="v-pills-privacy-tab">
+                    privacy
+                </div>
+                <div class="tab-pane fade" id="v-pills-accounts" role="tabpanel" aria-labelledby="v-pills-accounts-tab">
+                    accounts
+                </div>
+                <div class="tab-pane fade" id="v-pills-twofactor" role="tabpanel" aria-labelledby="v-pills-twofactor-tab">
+                    twofactor
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace='parts/footer.html :: footer'>0</th:block>
+</body>
+<th:block th:replace='parts/scripts.html :: scripts'>0</th:block>
+</html>
